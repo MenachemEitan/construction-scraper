@@ -185,9 +185,7 @@ def cabine_si_cadite_de_dus():
             f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
                 box_img).replace(",", "|") + '\n')
 
-?posjcopwcj
-aertwer
-W
+
 
 
 
