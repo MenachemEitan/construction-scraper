@@ -5,201 +5,109 @@ import re
 
 
 
-def getdata_baterii():
-    s = HTMLSession()
-    filename = "batarii.csv"
-    f = open(filename, "w")
-    headers = "produkt, price, imge\n"
-    f.write(headers)
-    my_url_baterii = 'https://www.dedeman.ro/ro/baterii/c/67'
-    temp_baterii = 'https://www.dedeman.ro/ro/baterii/c/67?page='
-    for g in range(19):
-        if g == 0:
-            url = my_url_baterii
-        else:
-            url = temp_baterii+str(g+1)
-        uClient = uReq(url)
-        page_html = uClient.read()
-        uClient.close()
-        page_soup = soup(page_html, "html.parser")
-        proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-        for i in range(len(proudukt_boxs)):
-            box = proudukt_boxs[i]
-            # print(box.a['title'])
-            box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-                1].text
-            # print("price " ,box_price)
-            box_img = box.a.span.span.img["src"]
-            # print(box_img)
-            f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-                box_img).replace(",", "|") + '\n')
 
-    return
-
-def getdata_mobilier_baie():
-    s = HTMLSession()
-    filename = "mobiliar_baie.csv"
-    f = open(filename, "w")
-    headers = "produkt, price, imge\n"
-    f.write(headers)
-    my_url_baterii = 'https://www.dedeman.ro/ro/mobilier-baie/c/65'
-    temp_baterii = 'https://www.dedeman.ro/ro/mobilier-baie/c/65?page='
-    for g in range(9):
-        if g == 0:
-            url = my_url_baterii
-        else:
-            url = temp_baterii + str(g + 1)
-        uClient = uReq(url)
-        page_html = uClient.read()
-        uClient.close()
-        page_soup = soup(page_html, "html.parser")
-        proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-        for i in range(len(proudukt_boxs)):
-            box = proudukt_boxs[i]
-            # print(box.a['title'])
-            box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-                1].text
-            # print("price " ,box_price)
-            box_img = box.a.span.span.img["src"]
-            # print(box_img)
-            f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-                box_img).replace(",", "|") + '\n')
-
-    return
-
-def getdata_iluminat_pentru_baie():
-    s = HTMLSession()
-    filename = "iluminat_pentru_baie.csv"
-    f = open(filename, "w")
-    headers = "produkt, price, imge\n"
-    f.write(headers)
-    my_url_baterii = 'https://www.dedeman.ro/ro/iluminat-pentru-baie/c/1035'
-    temp_baterii = 'https://www.dedeman.ro/ro/iluminat-pentru-baie/c/1035'
-    # for g in range(1):
-    #     if g == 0:
-    #         url = my_url
-    #     else:
-    #         url = temp + str(g + 1)
-
-    uClient = uReq(my_url_baterii)
+def geturls(sursurl):
+    uClient = uReq(sursurl)
     page_html = uClient.read()
     uClient.close()
     page_soup = soup(page_html, "html.parser")
-    proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-    for i in range(len(proudukt_boxs)):
-        box = proudukt_boxs[i]
-        # print(box.a['title'])
-        box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-            1].text
-        # print("price " ,box_price)
-        box_img = box.a.span.span.img["src"]
-        # print(box_img)
-        f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-            box_img).replace(",", "|") + '\n')
+    urls = page_soup.find_all("a", {"class": "subcategory-box landing-page-zone-box"})
+    return urls
 
-def getdata_oglinzi_baie_cu_polita():
-    s = HTMLSession()
-    filename = "oglinzi_baie_cu_polita.csv"
+
+def get_data(sursurl,filename ):
     f = open(filename, "w")
     headers = "produkt, price, imge\n"
     f.write(headers)
-    my_url_oglinzi_baie_cu_polita = 'https://www.dedeman.ro/ro/oglinzi-baie-cu-polita/c/446'
-    temp_oglinzi_baie_cu_polita = 'https://www.dedeman.ro/ro/oglinzi-baie-cu-polita/c/446'
-    # for g in range(1):
-    #     if g == 0:
-    #         url = my_url
-    #     else:
-    #         url = temp + str(g + 1)
-
-    uClient = uReq(my_url_oglinzi_baie_cu_polita)
-    page_html = uClient.read()
-    uClient.close()
-    page_soup = soup(page_html, "html.parser")
-    proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-    for i in range(len(proudukt_boxs)):
-        box = proudukt_boxs[i]
-        # print(box.a['title'])
-        box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-            1].text
-        # print("price " ,box_price)
-        box_img = box.a.span.span.img["src"]
-        # print(box_img)
-        f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-            box_img).replace(",", "|") + '\n')
-
-def getdata_cazi_si_cabine_cu_hidromasaj():
-    s = HTMLSession()
-    filename = "cazi_si_cabine_cu_hidromasaj.csv"
-    f = open(filename, "w")
-    headers = "produkt, price, imge\n"
-    f.write(headers)
-    my_url_cazi_si_cabine_cu_hidromasaj = 'https://www.dedeman.ro/ro/cazi-si-cabine-cu-hidromasaj/c/71'
-    temp_cazi_si_cabine_cu_hidromasaj = 'https://www.dedeman.ro/ro/cazi-si-cabine-cu-hidromasaj/c/71?page='
-    for g in range(2):
-        if g == 0:
-            url =  my_url_cazi_si_cabine_cu_hidromasaj
-        else:
-            url = temp_cazi_si_cabine_cu_hidromasaj
-        uClient = uReq(url)
+    urls = geturls(sursurl)
+    print(len(urls), "len urls")
+    for i in range(len(urls)):
+        first_temp_url = 'https://www.dedeman.ro'+urls[i]['href']
+        print(i, "sub_categori", first_temp_url)
+        uClient = uReq(first_temp_url)
         page_html = uClient.read()
         uClient.close()
         page_soup = soup(page_html, "html.parser")
-        proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-        for i in range(len(proudukt_boxs)):
-            box = proudukt_boxs[i]
-            # print(box.a['title'])
-            box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-                1].text
-            # print("price " ,box_price)
-            box_img = box.a.span.span.img["src"]
-            # print(box_img)
-            f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-                box_img).replace(",", "|") + '\n')
+        page_nums = page_soup.find_all("div", {"class": "pagination-list-wrap"})
+        if len(page_nums) !=0:
+            page_num = len(page_nums[0].find("ul", {"class": "inline-list pagination-list"}))
+            print(page_num, "len  page num")
+            for g in range(page_num):
+                if g == 0:
+                    url = first_temp_url
+                else:
+                    url = first_temp_url+"?page=" +str(g+1)
+                # print(url)
+                try:
+                    uClient = uReq(url)
+                    page_html = uClient.read()
+                    uClient.close()
+                    page_soup = soup(page_html, "html.parser")
+                    proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
+                    # print(len(proudukt_boxs), "len_proudukt_boxs ")
+                    for i in range(len(proudukt_boxs)):
+                        box = proudukt_boxs[i]
+                        # print(box.a['title'])
+                        box_price = box.find_all("span", {"class": "bold"})[0].text + \
+                                    box.find_all("span", {"class": "bold"})[
+                                        1].text
+                        # print("price " ,box_price)
+                        box_img = box.a.span.span.img["src"]
+                        # print(box_img)
+                        f.write(
+                            str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
+                                box_img).replace(",", "|") + '\n')
 
-def cabine_si_cadite_de_dus():
-    s = HTMLSession()
-    filename = "cabine_si_cadite_de_dus.csv"
-    f = open(filename, "w")
-    headers = "produkt, price, imge\n"
-    f.write(headers)
-    my_url_baterii = 'https://www.dedeman.ro/ro/cabine-si-cadite-de-dus/c/70'
-    temp_baterii = 'https://www.dedeman.ro/ro/cabine-si-cadite-de-dus/c/70?page='
-    for g in range(9):
-        if g == 0:
-            url = my_url_baterii
+                    print(url, "good url")
+                except:
+                    print('ldaijpajv',url, "bed url")
         else:
-            url = temp_baterii + str(g + 1)
-        uClient = uReq(url)
-        page_html = uClient.read()
-        uClient.close()
-        page_soup = soup(page_html, "html.parser")
-        proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
-        for i in range(len(proudukt_boxs)):
-            box = proudukt_boxs[i]
-            # print(box.a['title'])
-            box_price = box.find_all("span", {"class": "bold"})[0].text + box.find_all("span", {"class": "bold"})[
-                1].text
-            # print("price " ,box_price)
-            box_img = box.a.span.span.img["src"]
-            # print(box_img)
-            f.write(str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
-                box_img).replace(",", "|") + '\n')
+            url = first_temp_url
+            try:
+                uClient = uReq(url)
+                page_html = uClient.read()
+                uClient.close()
+                page_soup = soup(page_html, "html.parser")
+                proudukt_boxs = page_soup.find_all("div", {"class": "product-box"})
+                # print(len(proudukt_boxs), "len_proudukt_boxs ")
+                for i in range(len(proudukt_boxs)):
+                    box = proudukt_boxs[i]
+                    # print(box.a['title'])
+                    box_price = box.find_all("span", {"class": "bold"})[0].text + \
+                                box.find_all("span", {"class": "bold"})[
+                                    1].text
+                    # print("price " ,box_price)
+                    box_img = box.a.span.span.img["src"]
+                    # print(box_img)
+                    f.write(
+                        str(box.a['title']).replace(",", "|") + "," + str(box_price).replace(",", "|") + "," + str(
+                            box_img).replace(",", "|") + '\n')
+
+                print(url, "good url")
+            except :
+                print( "ldaijpajv'avjaivjivjv",url, "bed url")
 
 
 
 
 
 
-
-getdata_baterii()
-getdata_mobilier_baie()
-getdata_iluminat_pentru_baie()
-getdata_oglinzi_baie_cu_polita()
-getdata_cazi_si_cabine_cu_hidromasaj()
-cabine_si_cadite_de_dus()
-
-
-
+get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_Toamna.csv')
+get_data('https://www.dedeman.ro/ro/mobila/c/16','dedemab_mobila.csv')
+get_data('https://www.dedeman.ro/ro/baie/c/1528','dedeman_baie.csv' )
+get_data('https://www.dedeman.ro/ro/scule-si-unelte/c/6','scule_si_unelte.csv')
+get_data('https://www.dedeman.ro/ro/bucatarie/c/1520','dedeman_bucatarie.csv')
+get_data('https://www.dedeman.ro/ro/electrocasnice/c/32','dedeman_electrocasnice.csv')
+get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_gradina.csv')
+get_data('https://www.dedeman.ro/ro/auto/c/19','dedeman_auto.csv')
+get_data('https://www.dedeman.ro/ro/decoratiuni/c/34','dedeman_decoratiuni.csv')
+get_data('https://www.dedeman.ro/ro/amenajari-interioare/c/7','dedemen_amenajari_interioare.csv')
+get_data('https://www.dedeman.ro/ro/gresie-si-faianta/c/1068','dedemen_gresie_si_faianta.csv')
+get_data('https://www.dedeman.ro/ro/constructii/c/1426','dedeman_constructii.csv')
+get_data('https://www.dedeman.ro/ro/termice/c/4','dedeman_termice.csv')
+get_data('https://www.dedeman.ro/ro/electrice/c/62','dedeman_electrice.csv')
+get_data('https://www.dedeman.ro/ro/sanitare/c/1427','dedeman_sanitare.csv')
+get_data('https://www.dedeman.ro/ro/dormitoare/c/1590','dedeman_dormitoare.csv')
 
 
 
