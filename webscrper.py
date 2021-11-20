@@ -91,23 +91,23 @@ def get_data(sursurl,filename ):
 
 
 
-
-get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_Toamna.csv')
-get_data('https://www.dedeman.ro/ro/mobila/c/16','dedemab_mobila.csv')
-get_data('https://www.dedeman.ro/ro/baie/c/1528','dedeman_baie.csv' )
-get_data('https://www.dedeman.ro/ro/scule-si-unelte/c/6','scule_si_unelte.csv')
-get_data('https://www.dedeman.ro/ro/bucatarie/c/1520','dedeman_bucatarie.csv')
-get_data('https://www.dedeman.ro/ro/electrocasnice/c/32','dedeman_electrocasnice.csv')
-get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_gradina.csv')
-get_data('https://www.dedeman.ro/ro/auto/c/19','dedeman_auto.csv')
-get_data('https://www.dedeman.ro/ro/decoratiuni/c/34','dedeman_decoratiuni.csv')
-get_data('https://www.dedeman.ro/ro/amenajari-interioare/c/7','dedemen_amenajari_interioare.csv')
-get_data('https://www.dedeman.ro/ro/gresie-si-faianta/c/1068','dedemen_gresie_si_faianta.csv')
-get_data('https://www.dedeman.ro/ro/constructii/c/1426','dedeman_constructii.csv')
-get_data('https://www.dedeman.ro/ro/termice/c/4','dedeman_termice.csv')
-get_data('https://www.dedeman.ro/ro/electrice/c/62','dedeman_electrice.csv')
-get_data('https://www.dedeman.ro/ro/sanitare/c/1427','dedeman_sanitare.csv')
-get_data('https://www.dedeman.ro/ro/dormitoare/c/1590','dedeman_dormitoare.csv')
+get_data('https://www.dedeman.ro/ro/scule-si-unelte/c/6',"dedeman_scule_si_unelte.csv")
+# get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_Toamna.csv')
+# get_data('https://www.dedeman.ro/ro/mobila/c/16','dedemab_mobila.csv')
+# get_data('https://www.dedeman.ro/ro/baie/c/1528','dedeman_baie.csv' )
+# get_data('https://www.dedeman.ro/ro/scule-si-unelte/c/6','scule_si_unelte.csv')
+# get_data('https://www.dedeman.ro/ro/bucatarie/c/1520','dedeman_bucatarie.csv')
+# get_data('https://www.dedeman.ro/ro/electrocasnice/c/32','dedeman_electrocasnice.csv')
+# get_data('https://www.dedeman.ro/ro/gradina/c/17','dedeman_gradina.csv')
+# get_data('https://www.dedeman.ro/ro/auto/c/19','dedeman_auto.csv')
+# get_data('https://www.dedeman.ro/ro/decoratiuni/c/34','dedeman_decoratiuni.csv')
+# get_data('https://www.dedeman.ro/ro/amenajari-interioare/c/7','dedemen_amenajari_interioare.csv')
+# get_data('https://www.dedeman.ro/ro/gresie-si-faianta/c/1068','dedemen_gresie_si_faianta.csv')
+# get_data('https://www.dedeman.ro/ro/constructii/c/1426','dedeman_constructii.csv')
+# get_data('https://www.dedeman.ro/ro/termice/c/4','dedeman_termice.csv')
+# get_data('https://www.dedeman.ro/ro/electrice/c/62','dedeman_electrice.csv')
+# get_data('https://www.dedeman.ro/ro/sanitare/c/1427','dedeman_sanitare.csv')
+# get_data('https://www.dedeman.ro/ro/dormitoare/c/1590','dedeman_dormitoare.csv')
 
 
 
